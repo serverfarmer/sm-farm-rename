@@ -11,5 +11,7 @@ done
 for oldkey in `ls /etc/local/.ssh/key-*@$oldhost 2>/dev/null`; do
 	newkey=`echo $oldkey |sed s/$oldhost/$newhost/g`
 	mv $oldkey $newkey
-	mv $oldkey.pub $newkey.pub
+	if [ -f $oldkey.pub ]; then
+		mv $oldkey.pub $newkey.pub
+	fi
 done
