@@ -12,7 +12,7 @@ newip=$6
 scripts="farmconfig inventory config dns firewall known backup-remote backup-initiated"
 
 for script in $scripts; do
-	/opt/farm/ext/farm-rename/internal/$script.sh \
+	/opt/farm/mgr/farm-rename/internal/$script.sh \
 		$oldhost $oldshort $oldip \
 		$newhost $newshort $newip
 done
