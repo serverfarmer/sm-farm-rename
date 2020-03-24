@@ -1,5 +1,5 @@
 #!/bin/sh
-# Server Farmer sf-backup-collector backups
+# Server Farmer sm-backup-collector backups
 
 oldhost=$1
 newhost=$4
