@@ -3,4 +3,4 @@
 
 newhost=$4
 
-ssh -i ~/.ssh/key-root@$newhost -o StrictHostKeyChecking=no -o PasswordAuthentication=no root@$newhost uptime >/dev/null 2>/dev/null
+ssh -i ~/.serverfarmer/ssh/key-root@$newhost -o StrictHostKeyChecking=no -o PasswordAuthentication=no root@$newhost uptime >/dev/null 2>/dev/null

@@ -8,7 +8,7 @@ for dbfile in `grep -l $oldhost ~/.farm/*.hosts`; do
 	sed -i -e "s/$oldhost/$newhost/" $dbfile
 done
 
-for oldkey in `ls ~/.ssh/key-*@$oldhost 2>/dev/null`; do
+for oldkey in `ls ~/.serverfarmer/ssh/key-*@$oldhost 2>/dev/null`; do
 	newkey=`echo $oldkey |sed s/$oldhost/$newhost/g`
 	mv $oldkey $newkey
 	if [ -f $oldkey.pub ]; then
