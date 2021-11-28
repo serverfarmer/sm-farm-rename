@@ -4,7 +4,7 @@
 oldhost=$1
 newhost=$4
 
-for dbfile in `grep -l $oldhost ~/.farm/*.hosts`; do
+for dbfile in `grep -l $oldhost ~/.serverfarmer/inventory/*.hosts`; do
 	sed -i -e "s/$oldhost/$newhost/" $dbfile
 done
 

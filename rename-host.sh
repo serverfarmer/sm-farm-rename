@@ -19,7 +19,7 @@ elif ! [[ $2 =~ ^[a-z0-9.-]+[.][a-z0-9]+$ ]]; then
 elif [ "`getent hosts $1`" = "" ] && [ "`getent hosts $2`" = "" ]; then
 	echo "error: both hostnames not found"
 	exit 1
-elif ! grep -q "^$1:" ~/.farm/*.hosts && ! grep -q "^$1$" ~/.farm/*.hosts; then
+elif ! grep -q "^$1:" ~/.serverfarmer/inventory/*.hosts && ! grep -q "^$1$" ~/.serverfarmer/inventory/*.hosts; then
 	echo "error: host $1 not in farm"
 	exit 1
 fi
@@ -38,8 +38,8 @@ echo "renaming $oldhost locally"
 
 SSH=/opt/farm/ext/binary-ssh-client/wrapper/ssh
 
-if [ -s ~/.farm/collector.hosts ]; then
-	for collector in `cat ~/.farm/collector.hosts |grep -v ^#`; do
+if [ -s ~/.serverfarmer/inventory/collector.hosts ]; then
+	for collector in `grep -v ^# ~/.serverfarmer/inventory/collector.hosts`; do
 
 		if [ -z "${collector##*:*}" ]; then
 			host="${collector%:*}"
