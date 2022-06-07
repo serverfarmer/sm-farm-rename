@@ -36,8 +36,6 @@ newip=`resolve_host $newhost`
 echo "renaming $oldhost locally"
 /opt/farm/mgr/farm-rename/internal/all.sh $oldhost $oldshort $oldip $newhost $newshort $newip
 
-SSH=/opt/farm/ext/binary-ssh-client/wrapper/ssh
-
 if [ -s ~/.serverfarmer/inventory/collector.hosts ]; then
 	for collector in `grep -v ^# ~/.serverfarmer/inventory/collector.hosts`; do
 
@@ -51,7 +49,7 @@ if [ -s ~/.serverfarmer/inventory/collector.hosts ]; then
 
 		echo "renaming $oldhost on remote collector $host"
 		colkey=`/opt/farm/ext/keys/get-ssh-dedicated-key.sh $host root`
-		$SSH -i $colkey -p $port -o StrictHostKeyChecking=no root@$host "/opt/farm/mgr/farm-rename/internal/all.sh $oldhost $oldshort $oldip $newhost $newshort $newip"
+		ssh -i $colkey -p $port -o StrictHostKeyChecking=no root@$host "/opt/farm/mgr/farm-rename/internal/all.sh $oldhost $oldshort $oldip $newhost $newshort $newip"
 	done
 fi
 
